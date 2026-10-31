@@ -2,7 +2,7 @@
 ## Proposta de Solução Técnica
 
 **Tipo de documento:** Proposta de Arquitetura Técnica e Implementação  
-**Projeto:** Aplicativo Web TurboMeta  
+**Projeto:** Aplicação Web TurboMeta  
 **Status:** Solução Proposta  
 **Arquitetura:** Monólito Modular
 
@@ -10,30 +10,30 @@
 
 ## 1. Resumo Executivo
 
-O TurboMeta é uma aplicação web leve desenvolvida para oferecer uma plataforma centralizada para gerenciar e pesquisar informações sobre turbocompressores.
+O TurboMeta é uma aplicação web leve concebida para fornecer uma plataforma centralizada para gerir e pesquisar informações sobre turbocompressores.
 
-A aplicação fornecerá duas áreas distintas:
+A aplicação terá duas áreas distintas:
 
-- **Backoffice:** Interface administrativa para gerenciar usuários e registros de turbocompressores.
-- **Frontoffice:** Interface voltada para o usuário, permitindo que usuários autenticados pesquisem e consultem informações sobre turbocompressores.
+- **Backoffice:** Interface administrativa para gerir utilizadores e registos de turbocompressores.
+- **Frontoffice:** Interface voltada para o utilizador, permitindo que utilizadores autenticados pesquisem e consultem informações sobre turbocompressores.
 
-A solução proposta prioriza simplicidade, mantenabilidade, segurança e facilidade de implantação.
+A solução proposta prioriza a simplicidade, a manutenibilidade, a segurança e a facilidade de implementação.
 
-A aplicação será desenvolvida em Java e Spring Boot, com renderização de HTML no servidor e SQLite como banco de dados.
+A aplicação será desenvolvida em Java e Spring Boot, com renderização de HTML no servidor e SQLite como base de dados.
 
-A arquitetura evita deliberadamente infraestrutura e complexidade tecnológica desnecessárias. Toda a solução será entregue como uma única aplicação implantável.
+A arquitetura evita deliberadamente infraestrutura e complexidade tecnológica desnecessárias. A solução completa será entregue como uma única aplicação implementável.
 
-## 2. Objetivos do Projeto
+## 2. Objectivos do Projeto
 
-Os principais objetivos são:
+Os principais objectivos são:
 
-1. Fornecer autenticação segura de usuários.
-2. Implementar controle de acesso por perfil.
-3. Permitir que administradores gerenciem usuários da aplicação.
-4. Permitir que administradores gerenciem registros de turbocompressores.
-5. Oferecer uma interface de busca intuitiva para usuários autenticados.
-6. Garantir usabilidade responsiva em desktops e dispositivos móveis.
-7. Manter o mínimo possível de requisitos de implantação e operação.
+1. Fornecer autenticação segura de utilizadores.
+2. Implementar controlo de acesso por perfil.
+3. Permitir que os administradores gestionem os utilizadores da aplicação.
+4. Permitir que os administradores gestionem os registos de turbocompressores.
+5. Oferecer uma interface de pesquisa intuitiva para utilizadores autenticados.
+6. Garantir usabilidade responsiva em computadores e dispositivos móveis.
+7. Manter o mínimo possível de requisitos de implementação e operação.
 
 ## 3. Stack Tecnológica Proposta
 
@@ -43,22 +43,22 @@ As seguintes tecnologias são propostas:
 |---|---|---|
 | Linguagem de Programação | Java 25 | Desenvolvimento da aplicação |
 | Framework do Backend | Spring Boot 4.x | Framework da aplicação |
-| Camada Web | Spring MVC | Tratamento de requisições HTTP |
+| Camada Web | Spring MVC | Tratamento de pedidos HTTP |
 | Frontend | Thymeleaf | Renderização de HTML no servidor |
 | Framework de UI | Bootstrap 5 | Interface responsiva |
-| Banco de Dados | SQLite | Persistência relacional |
-| Acesso a Dados | Spring JDBC | Operações no banco de dados |
+| Base de Dados | SQLite | Persistência relacional |
+| Acesso a Dados | Spring JDBC | Operações na base de dados |
 | Autenticação | Spring Security | Autenticação e autorização |
-| Hash de Senhas | BCrypt / Argon2 | Armazenamento seguro de senhas |
-| Migrações do Banco | Flyway | Gerenciamento do esquema do banco |
-| Ferramenta de Build | Maven | Gerenciamento de dependências e build |
-| Implantação | Docker | Empacotamento e implantação da aplicação |
+| Hash de Palavras-passe | BCrypt / Argon2 | Armazenamento seguro de palavras-passe |
+| Migrações da Base de Dados | Flyway | Gestão do esquema da base de dados |
+| Ferramenta de Build | Maven | Gestão de dependências e build |
+| Implementação | Docker | Empacotamento e implementação da aplicação |
 
-### Justificativa da Seleção de Tecnologia
+### Justificação da Seleção de Tecnologias
 
 **Spring Boot**
 
-Fornece um framework maduro para aplicação, injeção de dependências, gerenciamento de configuração, validação e integração de segurança.
+Fornece um framework maduro para aplicações, injeção de dependências, gestão de configuração, validação e integração de segurança.
 
 **Thymeleaf + Bootstrap**
 
@@ -66,21 +66,21 @@ Oferece uma abordagem direta para construir interfaces web responsivas sem intro
 
 **SQLite**
 
-É um banco de dados relacional leve que não exige um servidor de banco de dados dedicado. Os dados são armazenados em um único arquivo persistente.
+É uma base de dados relacional leve que não exige um servidor de base de dados dedicado. Os dados são armazenados num único ficheiro persistente.
 
 **Spring Security**
 
-Fornece mecanismos estabelecidos de autenticação e autorização, incluindo gerenciamento de sessões e controle de acesso por perfil.
+Fornece mecanismos estabelecidos de autenticação e autorização, incluindo gestão de sessões e controlo de acesso por perfil.
 
 **Spring JDBC**
 
-Fornece acesso direto e leve ao banco de dados, sem exigir uma camada ORM complexa. Isso é particularmente adequado para o modelo de dados relativamente simples e a integração com SQLite.
+Fornece acesso direto e leve à base de dados, sem exigir uma camada ORM complexa. Isto é particularmente adequado para o modelo de dados relativamente simples e para a integração com SQLite.
 
 ## 4. Arquitetura da Solução
 
 A arquitetura proposta segue a abordagem de **Monólito Modular**.
 
-Todos os componentes da aplicação serão executados dentro de uma única aplicação Spring Boot e compartilharão o mesmo ciclo de implantação.
+Todos os componentes da aplicação serão executados dentro de uma única aplicação Spring Boot e partilharão o mesmo ciclo de implementação.
 
 ### 4.1 Arquitetura Lógica
 
@@ -90,7 +90,7 @@ A aplicação será composta pelas seguintes camadas:
 - Templates Thymeleaf.
 - Componentes Bootstrap.
 - Formulários e tabelas HTML.
-- Integração opcional com HTMX para interações dinâmicas de busca.
+- Integração opcional com HTMX para interações dinâmicas de pesquisa.
 
 **Camada de Aplicação**
 - Controladores Spring MVC.
@@ -101,40 +101,40 @@ A aplicação será composta pelas seguintes camadas:
 **Camada de Segurança**
 - Spring Security.
 - Autenticação baseada em sessão.
-- Controle de acesso com base nos privilégios do usuário.
-- Hash de senhas.
+- Controlo de acesso com base nos privilégios do utilizador.
+- Hash de palavras-passe.
 
 **Camada de Persistência**
 - Spring JDBC.
 - Componentes de repositório.
-- Banco de dados SQLite.
-- Migrações do banco com Flyway.
+- Base de dados SQLite.
+- Migrações da base de dados com Flyway.
 
 ### 4.2 Módulos da Aplicação
 
 A aplicação será organizada em dois módulos funcionais principais.
 
-**Módulo de Gestão de Usuários**
-- Autenticação de usuários.
-- Administração de usuários.
+**Módulo de Gestão de Utilizadores**
+- Autenticação de utilizadores.
+- Administração de utilizadores.
 - Ativação e desativação de contas.
-- Autorização de usuários.
+- Autorização de utilizadores.
 
 **Módulo de Gestão de Turbocompressores**
-- Cadastro de turbocompressores.
+- Registo de turbocompressores.
 - Edição de turbocompressores.
-- Exclusão de turbocompressores.
-- Busca de turbocompressores.
+- Eliminação de turbocompressores.
+- Pesquisa de turbocompressores.
 
-## 5. Design do Banco de Dados
+## 5. Design da Base de Dados
 
-A aplicação usará inicialmente SQLite com duas tabelas principais.
+A aplicação utilizará inicialmente SQLite com duas tabelas principais.
 
-### 5.1 Tabela de Usuários
+### 5.1 Tabela de Utilizadores
 
 Tabela: `app_user`
 
-| Campo | Tipo de Dado | Restrições |
+| Campo | Tipo de Dados | Restrições |
 |---|---|---|
 | id | INTEGER | Chave primária, auto incremento |
 | username | VARCHAR(30) | NOT NULL |
@@ -145,16 +145,16 @@ Tabela: `app_user`
 
 **Regras de Negócio:**
 - Endereços de e-mail devem ser válidos e únicos.
-- As senhas devem ser hashadas com segurança antes da persistência.
-- Usuários inativos não poderão se autenticar.
-- Administradores têm acesso ao backoffice.
-- Usuários comuns têm acesso ao frontoffice.
+- As palavras-passe devem ser guardadas com hash de forma segura antes da persistência.
+- Utilizadores inativos não poderão autenticar-se.
+- Os administradores têm acesso ao backoffice.
+- Os utilizadores regulares têm acesso ao frontoffice.
 
 ### 5.2 Tabela de Turbocompressores
 
 Tabela: `turbo`
 
-| Campo | Tipo de Dado | Restrições |
+| Campo | Tipo de Dados | Restrições |
 |---|---|---|
 | ref | TEXT | Chave primária |
 | brand | TEXT | NOT NULL |
@@ -163,56 +163,56 @@ Tabela: `turbo`
 
 **Regras de Negócio:**
 - Cada turbocompressor deve ter uma referência única.
-- Marca e modelo são obrigatórios.
-- Informações geográficas são opcionais.
-- Registros de turbocompressores só podem ser modificados por administradores.
+- A marca e o modelo são obrigatórios.
+- A informação geográfica é opcional.
+- Os registos de turbocompressores só podem ser alterados por administradores.
 
-### 5.3 Considerações sobre o Banco de Dados
+### 5.3 Considerações sobre a Base de Dados
 
-O banco de dados será armazenado em um arquivo persistente fora do contêiner da aplicação.
+A base de dados será armazenada num ficheiro persistente fora do contentor da aplicação.
 
-O Flyway será usado para versionar e gerenciar alterações no esquema do banco, garantindo inicialização e atualização consistentes.
+O Flyway será utilizado para versionar e gerir alterações ao esquema da base de dados, garantindo uma inicialização e atualização consistentes.
 
 ## 6. Requisitos Funcionais
 
 ### 6.1 Autenticação
 
-A página inicial da aplicação será a tela de login.
+A página inicial da aplicação será a ecrã de login.
 
-**Recursos:**
-- Branding e logotipo do TurboMeta.
-- Autenticação por e-mail e senha.
+**Funcionalidades:**
+- Identidade visual e logótipo do TurboMeta.
+- Autenticação por e-mail e palavra-passe.
 - Validação de entradas.
 - Feedback para credenciais inválidas.
 - Funcionalidade de logout.
-- Gerenciamento de sessão.
+- Gestão de sessão.
 
-Após a autenticação bem-sucedida, os usuários serão redirecionados de acordo com suas permissões:
+Após autenticação bem-sucedida, os utilizadores serão redirecionados de acordo com as suas permissões:
 
 - Administradores → Backoffice.
-- Usuários comuns → Frontoffice.
+- Utilizadores regulares → Frontoffice.
 
 ### 6.2 Backoffice – Administração
 
-Apenas usuários autenticados com privilégios de administrador (`is_admin = true`) podem acessar o backoffice.
+Apenas os utilizadores autenticados com privilégios de administrador (`is_admin = true`) podem aceder ao backoffice.
 
-#### 6.2.1 Gestão de Usuários
+#### 6.2.1 Gestão de Utilizadores
 
 Os administradores poderão:
 
 | Operação | Descrição |
 |---|---|
-| Pesquisar | Buscar usuários por nome de usuário ou e-mail |
-| Inserir | Criar novos usuários da aplicação |
-| Editar | Atualizar informações do usuário e permissões |
-| Remover | Excluir registros de usuários |
-| Ativar/Desativar | Habilitar ou desabilitar contas de usuário |
+| Pesquisar | Procurar utilizadores por nome de utilizador ou e-mail |
+| Inserir | Criar novos utilizadores da aplicação |
+| Editar | Atualizar informações do utilizador e permissões |
+| Remover | Eliminar registos de utilizadores |
+| Ativar/Desativar | Ativar ou desativar contas de utilizador |
 
 Considerações adicionais:
-- As senhas serão hashadas antes do armazenamento.
-- A unicidade de e-mail será reforçada.
-- Os administradores poderão conceder ou revogar privilégios administrativos.
-- A aplicação deve prevenir exclusão ou desativação acidental do último administrador ativo.
+- As palavras-passe serão guardadas com hash antes do armazenamento.
+- A unicidade do e-mail será aplicada.
+- Os administradores poderão atribuir ou revogar privilégios administrativos.
+- A aplicação deve impedir a eliminação ou desativação acidental do último administrador ativo.
 
 #### 6.2.2 Gestão de Turbocompressores
 
@@ -220,34 +220,34 @@ Os administradores poderão:
 
 | Operação | Descrição |
 |---|---|
-| Pesquisar | Buscar por referência, marca ou modelo |
-| Inserir | Registrar um novo turbocompressor |
+| Pesquisar | Procurar por referência, marca ou modelo |
+| Inserir | Registar um novo turbocompressor |
 | Editar | Atualizar informações de um turbocompressor existente |
-| Remover | Excluir registros de turbocompressores |
+| Remover | Eliminar registos de turbocompressores |
 
-Os resultados da pesquisa serão exibidos em uma tabela estruturada e paginada.
+Os resultados da pesquisa serão apresentados numa tabela estruturada e paginada.
 
-### 6.3 Frontoffice – Busca de Turbocompressores
+### 6.3 Frontoffice – Pesquisa de Turbocompressores
 
-Usuários autenticados não administrativos terão acesso à funcionalidade de busca de turbocompressores.
+Os utilizadores autenticados não administrativos terão acesso à funcionalidade de pesquisa de turbocompressores.
 
 **Funcionalidade disponível:**
-- Busca por referência.
-- Busca por marca.
-- Busca por modelo.
-- Exibição de registros de turbocompressores correspondentes.
+- Pesquisa por referência.
+- Pesquisa por marca.
+- Pesquisa por modelo.
+- Apresentação de registos de turbocompressores correspondentes.
 - Visualização dos detalhes disponíveis do turbocompressor.
 
-O frontoffice será somente leitura. Os usuários não terão permissão para criar, modificar ou excluir registros.
+O frontoffice será apenas de leitura. Os utilizadores não terão permissão para criar, alterar ou eliminar registos.
 
-## 7. Interface do Usuário
+## 7. Interface do Utilizador
 
 A interface seguirá um design limpo, moderno e responsivo.
 
 ### 7.1 Página de Login
 
-- Logotipo e branding do TurboMeta.
-- Campos de e-mail e senha.
+- Logótipo e identidade visual do TurboMeta.
+- Campos de e-mail e palavra-passe.
 - Ação de login.
 - Mensagens de erro de autenticação.
 
@@ -256,70 +256,70 @@ A interface seguirá um design limpo, moderno e responsivo.
 Navegação proposta:
 
 - Dashboard.
-- Usuários.
+- Utilizadores.
 - Turbos.
 - Logout.
 
-As telas de administração fornecerão:
-- Busca e filtros.
+As ecrãs de administração fornecerão:
+- Pesquisa e filtros.
 - Apresentação tabular de dados.
 - Formulários de criação e edição.
-- Confirmação antes da exclusão.
+- Confirmação antes da eliminação.
 - Mensagens claras de validação e erro.
 
 ### 7.3 Frontoffice
 
-A tela principal focará na busca de turbocompressores.
+O ecrã principal focar-se-á na pesquisa de turbocompressores.
 
-Os usuários serão apresentados com:
-- Campo de busca.
-- Filtros de busca.
-- Resultados da busca.
+Os utilizadores serão apresentados com:
+- Campo de pesquisa.
+- Filtros de pesquisa.
+- Resultados da pesquisa.
 - Referência, marca, modelo e informações geográficas do turbocompressor.
 
 ## 8. Considerações de Segurança
 
-A segurança será implementada usando Spring Security.
+A segurança será implementada utilizando Spring Security.
 
 As seguintes medidas serão incluídas:
 
-1. Hash de senha usando BCrypt ou Argon2.
+1. Hash de palavra-passe usando BCrypt ou Argon2.
 2. Autenticação baseada em sessão.
 3. Autorização por perfil.
 4. Proteção de endpoints administrativos.
-5. Proteção CSRF para envio de formulários.
+5. Proteção CSRF para submissão de formulários.
 6. Validação de entrada no servidor.
-7. Proteção contra injeção SQL por meio de consultas parametrizadas.
-8. Encerramento seguro de sessão no logout.
+7. Proteção contra injeção SQL através de consultas parametrizadas.
+8. Encerramento seguro da sessão no logout.
 9. Restrição de acesso para contas inativas.
 10. Prevenção de escalonamento de privilégios não autorizado.
 
-A autorização será sempre aplicada no servidor, independentemente da interface apresentada ao usuário.
+A autorização será sempre aplicada no servidor, independentemente da interface apresentada ao utilizador.
 
-## 9. Arquitetura de Implantação
+## 9. Arquitetura de Implementação
 
-A aplicação será empacotada e implantada como um contêiner Docker.
+A aplicação será empacotada e implementada como um contentor Docker.
 
-### 9.1 Modelo de Implantação
+### 9.1 Modelo de Implementação
 
-A implantação proposta consiste em:
+A implementação proposta consiste em:
 
 - Uma aplicação Spring Boot.
-- Um contêiner Docker.
-- Um arquivo de banco de dados SQLite persistente.
-- Proxy reverso opcional para término de HTTPS.
+- Um contentor Docker.
+- Um ficheiro de base de dados SQLite persistente.
+- Proxy reverso opcional para terminação HTTPS.
 
 ### 9.2 Persistência
 
-O banco de dados SQLite será montado usando um volume Docker ou um diretório persistente do host.
+A base de dados SQLite será montada utilizando um volume Docker ou um diretório persistente do host.
 
-Isso garante que a reinstalação da aplicação ou a substituição do contêiner não resulte em perda de dados do banco.
+Isto garante que a reinstalação da aplicação ou a substituição do contentor não resulte em perda de dados da base de dados.
 
-### 9.3 Vantagens da Implantação
+### 9.3 Vantagens da Implementação
 
-- Processo de implantação simples.
+- Processo de implementação simples.
 - Requisitos mínimos de infraestrutura.
-- Nenhum servidor de banco de dados dedicado.
+- Nenhum servidor de base de dados dedicado.
 - Baixo esforço operacional.
 - Backup e restauração fáceis.
 - Atualizações simples da aplicação.
@@ -330,29 +330,29 @@ Isso garante que a reinstalação da aplicação ou a substituição do contêin
 |---|---|
 | Manutenibilidade | Componentes da aplicação modulares e claramente separados |
 | Segurança | Autenticação e autorização aplicadas no servidor |
-| Desempenho | Consultas eficientes ao banco e resultados de busca paginados |
-| Disponibilidade | Disponibilidade da aplicação dependente da infraestrutura de hospedagem |
+| Desempenho | Consultas eficientes à base de dados e resultados de pesquisa paginados |
+| Disponibilidade | Disponibilidade da aplicação dependente da infraestrutura de alojamento |
 | Usabilidade | Interface responsiva e intuitiva |
-| Portabilidade | Implantação baseada em Docker |
+| Portabilidade | Implementação baseada em Docker |
 | Escalabilidade | Arquitetura permite migração futura para PostgreSQL |
-| Integridade dos Dados | Restrições do banco e validação em nível de aplicação |
+| Integridade dos Dados | Restrições da base de dados e validação ao nível da aplicação |
 
-O SQLite é apropriado para a carga inicial esperada, especialmente quando a concorrência de gravação é limitada. Se o uso da aplicação ou os requisitos de gravação concorrente aumentarem significativamente, o PostgreSQL pode ser introduzido como plataforma de persistência alternativa.
+O SQLite é apropriado para a carga inicial esperada, especialmente quando a concorrência de escrita é limitada. Se a utilização da aplicação ou os requisitos de escrita concorrente aumentarem significativamente, o PostgreSQL pode ser introduzido como plataforma de persistência alternativa.
 
 ## 11. Escopo do Projeto
 
 ### Incluído na Entrega Inicial
 
-- Página de login do TurboMeta e branding.
-- Autenticação de usuários e gerenciamento de sessão.
-- Administração de usuários (CRUD).
+- Página de login do TurboMeta e identidade visual.
+- Autenticação de utilizadores e gestão de sessão.
+- Administração de utilizadores (CRUD).
 - Administração de turbocompressores (CRUD).
-- Funcionalidade de busca de turbocompressores.
-- Controle de acesso por perfil.
+- Funcionalidade de pesquisa de turbocompressores.
+- Controlo de acesso por perfil.
 - Interface responsiva.
-- Integração com banco de dados SQLite.
-- Migrações do banco.
-- Configuração de empacotamento e implantação em Docker.
+- Integração com base de dados SQLite.
+- Migrações da base de dados.
+- Configuração de empacotamento e implementação em Docker.
 
 ### Possíveis Melhorias Futuras
 
@@ -360,17 +360,17 @@ A arquitetura permitirá a introdução de funcionalidades adicionais sem exigir
 
 Possíveis melhorias incluem:
 
-- Recuperação de senha.
-- Fluxos de cadastro de usuários.
-- Importação/exportação de registros de turbocompressores (CSV/Excel).
-- Filtros avançados de busca.
+- Recuperação de palavra-passe.
+- Fluxos de registo de utilizadores.
+- Importação/exportação de registos de turbocompressores (CSV/Excel).
+- Filtros avançados de pesquisa.
 - Imagens e anexos de turbocompressores.
-- Logs de auditoria e rastreamento de atividades administrativas.
-- Perfis e permissões adicionais de usuários.
+- Registos de auditoria e rastreio de atividades administrativas.
+- Perfis e permissões adicionais de utilizadores.
 - Integração de API com sistemas externos.
 - Migração para PostgreSQL.
 
-Essas melhorias não fazem parte do escopo inicial, a menos que sejam explicitamente acordadas.
+Estas melhorias não fazem parte do âmbito inicial, a menos que sejam explicitamente acordadas.
 
 ## 12. Entregáveis Propostos
 
@@ -378,14 +378,14 @@ A entrega do projeto incluirá:
 
 1. Código-fonte completo da aplicação.
 2. Configuração do projeto Maven.
-3. Esquema do banco SQLite e migrações do Flyway.
+3. Esquema da base de dados SQLite e migrações do Flyway.
 4. Implementação de autenticação e autorização.
-5. Gestão de usuários no backoffice.
+5. Gestão de utilizadores no backoffice.
 6. Gestão de turbocompressores no backoffice.
-7. Busca de turbocompressores no frontoffice.
+7. Pesquisa de turbocompressores no frontoffice.
 8. Interface responsiva.
-9. Dockerfile e configuração de implantação.
-10. Documentação técnica cobrindo configuração, implantação e manutenção.
+9. Dockerfile e configuração de implementação.
+10. Documentação técnica abrangendo configuração, implementação e manutenção.
 
 ## 13. Conclusão
 
@@ -393,6 +393,6 @@ A solução proposta para o TurboMeta oferece uma abordagem pragmática e susten
 
 Ao combinar Java, Spring Boot, Thymeleaf, Bootstrap e SQLite, a aplicação pode fornecer todas as capacidades necessárias sem introduzir complexidade arquitetural ou operacional desnecessária.
 
-A abordagem de Monólito Modular oferece um equilíbrio entre separação clara de responsabilidades, facilidade de desenvolvimento e implantação direta.
+A abordagem de Monólito Modular oferece um equilíbrio entre separação clara de responsabilidades, facilidade de desenvolvimento e implementação direta.
 
-A solução foi desenhada para atender aos requisitos atuais, mantendo a flexibilidade para evoluir conforme surgirem necessidades futuras do negócio.
+A solução foi concebida para responder aos requisitos atuais, mantendo a flexibilidade para evoluir conforme surgirem necessidades futuras do negócio.
