@@ -20,7 +20,7 @@
         .sidebar a { color: var(--tm-light); text-decoration: none; padding: 10px 20px; display: block; }
         .sidebar a:hover, .sidebar a.active { background-color: var(--tm-gray); color: var(--tm-orange); }
         .sidebar .brand { padding: 20px; font-size: 1.25rem; font-weight: 700; color: var(--tm-orange); border-bottom: 1px solid var(--tm-gray); }
-        .main-content { padding: 2rem; }
+        .main-content { padding: 2rem; background-color: var(--tm-dark); }
         .btn-primary { background-color: var(--tm-orange); border-color: var(--tm-orange); }
         .btn-primary:hover { background-color: var(--tm-red); border-color: var(--tm-red); }
         .btn-outline-primary { color: var(--tm-orange); border-color: var(--tm-orange); }
@@ -46,12 +46,78 @@
         .badge.bg-secondary { background-color: var(--tm-gray) !important; color: var(--tm-light) !important; }
         .alert-success { background-color: rgba(230,126,34,0.2); border-color: var(--tm-orange); color: var(--tm-light); }
         .alert-danger { background-color: rgba(231,76,60,0.2); border-color: var(--tm-red); color: var(--tm-light); }
+
+        /* Mobile sidebar styles */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100vh;
+            z-index: 1050;
+            transition: left 0.3s ease;
+            overflow-y: auto;
+        }
+        .sidebar.show {
+            left: 0;
+        }
+        .sidebar-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1040;
+            display: none;
+        }
+        .sidebar-backdrop.show {
+            display: block;
+        }
+        .mobile-header {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            background-color: var(--tm-dark-gray);
+            border-bottom: 1px solid var(--tm-gray);
+        }
+        .mobile-header .brand-text {
+            margin-left: 15px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--tm-orange);
+        }
+        .btn-toggle-sidebar {
+            background: none;
+            border: none;
+            color: var(--tm-light);
+            font-size: 1.5rem;
+            padding: 0;
+            cursor: pointer;
+        }
+        @media (min-width: 768px) {
+            .sidebar {
+                position: relative;
+                left: 0;
+            }
+            .sidebar-backdrop { display: none !important; }
+            .mobile-header { display: none !important; }
+        }
+        @media (max-width: 767px) {
+            .main-content { padding: 1rem !important; }
+        }
     </style>
 </head>
 <body>
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
 <div class="container-fluid">
     <div class="row">
-        <nav class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+        <!-- Mobile header with hamburger -->
+        <div class="mobile-header">
+            <button class="btn-toggle-sidebar" id="sidebarToggle">☰</button>
+            <span class="brand-text">⚙️ TurboMeta</span>
+        </div>
+        <nav class="col-md-3 col-lg-2 d-md-block sidebar" id="sidebar">
             <div class="brand">⚙️ TurboMeta</div>
             <div class="nav flex-column">
                 <a th:href="@{/backoffice/users}" class="nav-link active">👥 Users</a>
@@ -87,6 +153,7 @@
                 </div>
             </form>
 
+            <div class="table-responsive">
             <table class="table table-striped table-hover">
                 <thead>
                 <tr>
@@ -127,9 +194,29 @@
                 </tr>
                 </tbody>
             </table>
+            </div>
         </main>
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Mobile sidebar toggle
+    document.addEventListener('DOMContentLoaded', function() {
+        var toggle = document.getElementById('sidebarToggle');
+        var sidebar = document.getElementById('sidebar');
+        var backdrop = document.getElementById('sidebarBackdrop');
+
+        if (toggle && sidebar && backdrop) {
+            toggle.addEventListener('click', function() {
+                sidebar.classList.toggle('show');
+                backdrop.classList.toggle('show');
+            });
+            backdrop.addEventListener('click', function() {
+                sidebar.classList.remove('show');
+                backdrop.classList.remove('show');
+            });
+        }
+    });
+</script>
 </body>
 </html>
