@@ -17,9 +17,9 @@ The application will provide two distinct areas:
 - **Backoffice:** Administrative interface for managing users and turbocharger records.
 - **Frontoffice:** User-facing interface allowing authenticated users to search and consult turbocharger information.
 
-The proposed solution prioritizes simplicity, maintainability, security and ease of deployment.
+The proposed solution prioritizes simplicity, maintainability, security, ease of deployment, and a responsive user interface.
 
-The application will be developed using Java and Spring Boot, with server-side HTML rendering and SQLite as its database.
+The application will be developed using Java and Spring Boot, with server-side HTML rendering, SQLite as its database, and a design that adapts to both desktop and mobile screens.
 
 The architecture deliberately avoids unnecessary infrastructure and technological complexity. The entire solution will be delivered as a single deployable application.
 
@@ -32,7 +32,7 @@ The main objectives are:
 3. Allow administrators to manage application users.
 4. Allow administrators to manage turbocharger records.
 5. Provide an intuitive search interface for authenticated users.
-6. Ensure responsive usability across desktop and mobile devices.
+6. Ensure the interface is fully responsive and adapts to both desktop and mobile devices.
 7. Keep deployment and operational requirements to a minimum.
 
 ## 3. Proposed Technology Stack
@@ -242,7 +242,7 @@ The frontoffice will be read-only. Users will not have permission to create, mod
 
 ## 7. User Interface
 
-The interface will follow a clean, modern and responsive design.
+The interface will follow a clean, modern and responsive design, automatically adapting to different screen sizes, including desktop and mobile devices.
 
 ### 7.1 Login Page
 

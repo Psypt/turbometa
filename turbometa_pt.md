@@ -17,9 +17,9 @@ A aplicação terá duas áreas distintas:
 - **Backoffice:** Interface administrativa para gerir utilizadores e registos de turbocompressores.
 - **Frontoffice:** Interface voltada para o utilizador, permitindo que utilizadores autenticados pesquisem e consultem informações sobre turbocompressores.
 
-A solução proposta prioriza a simplicidade, a manutenibilidade, a segurança e a facilidade de implementação.
+A solução proposta prioriza a simplicidade, a manutenibilidade, a segurança, a facilidade de implementação e a responsividade da interface.
 
-A aplicação será desenvolvida em Java e Spring Boot, com renderização de HTML no servidor e SQLite como base de dados.
+A aplicação será desenvolvida em Java e Spring Boot, com renderização de HTML no servidor, SQLite como base de dados e desenho adaptável a ecrãs de desktop e mobile.
 
 A arquitetura evita deliberadamente infraestrutura e complexidade tecnológica desnecessárias. A solução completa será entregue como uma única aplicação implementável.
 
@@ -32,7 +32,7 @@ Os principais objectivos são:
 3. Permitir que os administradores gestionem os utilizadores da aplicação.
 4. Permitir que os administradores gestionem os registos de turbocompressores.
 5. Oferecer uma interface de pesquisa intuitiva para utilizadores autenticados.
-6. Garantir usabilidade responsiva em computadores e dispositivos móveis.
+6. Garantir a responsividade da interface, adaptando-a a dispositivos móveis e desktop.
 7. Manter o mínimo possível de requisitos de implementação e operação.
 
 ## 3. Stack Tecnológica Proposta
@@ -242,7 +242,7 @@ O frontoffice será apenas de leitura. Os utilizadores não terão permissão pa
 
 ## 7. Interface do Utilizador
 
-A interface seguirá um design limpo, moderno e responsivo.
+A interface seguirá um design limpo, moderno e responsivo, garantindo adaptação automática a diferentes tamanhos de ecrã, incluindo mobile e desktop.
 
 ### 7.1 Página de Login
 
