@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turbo Search - TurboMeta</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --tm-dark: #1e1e1e;
+            --tm-dark-gray: #2d2d2d;
+            --tm-gray: #3e3e3e;
+            --tm-orange: #e67e22;
+            --tm-yellow: #f1c40f;
+            --tm-red: #e74c3c;
+            --tm-light: #ecf0f1;
+        }
+        body { background-color: var(--tm-dark); color: var(--tm-light); }
+        .navbar { background-color: var(--tm-dark-gray); }
+        .navbar-brand { color: var(--tm-orange) !important; font-weight: 700; }
+        .navbar-text { color: var(--tm-yellow) !important; }
+        .search-section { padding: 2rem 0; }
+        .results-section { padding: 0 0 2rem 0; }
+        .btn-primary { background-color: var(--tm-orange); border-color: var(--tm-orange); }
+        .btn-primary:hover { background-color: var(--tm-red); border-color: var(--tm-red); }
+        .btn-outline-secondary { color: var(--tm-light); border-color: var(--tm-gray); }
+        .btn-outline-secondary:hover { background-color: var(--tm-gray); border-color: var(--tm-gray); }
+        .btn-outline-light { color: var(--tm-yellow) !important; border-color: var(--tm-yellow); }
+        .btn-outline-light:hover { background-color: var(--tm-yellow); color: var(--tm-dark) !important; }
+        .form-control { background-color: var(--tm-dark-gray); border-color: var(--tm-gray); color: var(--tm-light); }
+        .form-control::placeholder { color: #888; }
+        .form-control:focus { background-color: var(--tm-dark-gray); border-color: var(--tm-orange); color: var(--tm-light); box-shadow: 0 0 0 0.2rem rgba(230,126,34,0.25); }
+        .card { background-color: var(--tm-dark-gray); border-color: var(--tm-gray); }
+        .card-title { color: var(--tm-light); }
+        .card-subtitle { color: var(--tm-yellow) !important; }
+        .card-text { color: var(--tm-light); }
+        .badge.bg-primary { background-color: var(--tm-orange) !important; }
+        .text-muted { color: var(--tm-yellow) !important; }
+        .alert-info { background-color: rgba(241,196,15,0.15); border-color: var(--tm-yellow); color: var(--tm-light); }
+    </style>
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/frontoffice/search">⚙️ TurboMeta</a>
+        <div class="navbar-text text-light">
+            <span sec:authentication="name">User</span>
+        </div>
+        <div class="d-flex">
+            <a sec:authorize="hasRole('ADMIN')" href="/backoffice/users" class="btn btn-outline-light btn-sm me-2">Backoffice</a>
+            <form th:action="@{/logout}" method="post">
+                <button type="submit" class="btn btn-outline-light btn-sm">Logout</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <!-- Search Section -->
+    <div class="search-section">
+        <h2 class="mb-4">🔍 Turbocharger Search</h2>
+        <form th:action="@{/frontoffice/search}" method="get">
+            <div class="input-group input-group-lg">
+                <input type="text" name="query" class="form-control" placeholder="Search by reference, brand, or model..."
+                       th:value="${query}">
+                <button class="btn btn-primary" type="submit">Search</button>
+                <a th:href="@{/frontoffice/search}" class="btn btn-outline-secondary">Clear</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Results Section -->
+    <div class="results-section">
+        <div th:if="${query != null and query != ''}" class="mb-3">
+            <p class="text-muted">
+                Showing results for "<strong th:text="${query}"></strong>" —
+                <strong th:text="${#lists.size(turbos)}"></strong> result(s) found.
+            </p>
+        </div>
+
+        <div th:if="${#lists.isEmpty(turbos)}" class="alert alert-info" role="alert">
+            No turbochargers found. <span th:if="${query == null or query == ''}">The database is currently empty.</span>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" th:if="${!#lists.isEmpty(turbos)}">
+            <div class="col" th:each="turbo : ${turbos}">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <span class="badge bg-primary" th:text="${turbo.ref}"></span>
+                        </h5>
+                        <h6 class="card-subtitle mb-2 text-muted">
+                            <strong th:text="${turbo.brand}"></strong> — <span th:text="${turbo.model}"></span>
+                        </h6>
+                        <p class="card-text" th:if="${turbo.geo != null and turbo.geo != ''}">
+                            <small>📐 <span th:text="${turbo.geo}"></span></small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
